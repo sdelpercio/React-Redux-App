@@ -11,6 +11,7 @@ import {
 
 export const initialState = {
 	isFetching: false,
+	searched: false,
 
 	user_latlong: {},
 	google_error: '',
@@ -21,12 +22,18 @@ export const initialState = {
 	result: false
 };
 
-export const reducer = (state, action) => {
+export const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case FETCH_DATA:
 			return {
 				...state,
-				isFetching: true
+				isFetching: true,
+				searched: true,
+				user_latlong: {},
+				google_error: '',
+				iss_latlong: {},
+				iss_error: '',
+				result: false
 			};
 		case UPDATE_ISS:
 			return {
@@ -64,6 +71,12 @@ export const reducer = (state, action) => {
 		case RESET_RESULT:
 			return {
 				...state,
+				isFetching: false,
+				searched: false,
+				user_latlong: {},
+				google_error: '',
+				iss_latlong: {},
+				iss_error: '',
 				result: false
 			};
 		default:

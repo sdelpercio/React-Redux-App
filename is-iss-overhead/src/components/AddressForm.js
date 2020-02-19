@@ -17,26 +17,32 @@ const AddressForm = props => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		setAdjustedAddress(removeSpaces(addressInput));
-		props.checkData();
+		props.checkData(adjustedAddress);
 
 		setAddressInput('');
 		setAdjustedAddress('');
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<label htmlFor='address' />
-			<input
-				type='text'
-				name='address'
-				id='address'
-				value={addressInput}
-				placeholder='enter your address'
-				onChange={handleChange}
-				required
-			/>
-			<button type='submit'>Go!</button>
-		</form>
+		<>
+			<form onSubmit={handleSubmit}>
+				<label htmlFor='address' />
+				<input
+					type='text'
+					name='address'
+					id='address'
+					value={addressInput}
+					placeholder='enter your address'
+					onChange={handleChange}
+					required
+				/>
+				<button type='submit'>Go!</button>
+			</form>
+			<p>
+				Sample Address:{' '}
+				<span>1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA</span>
+			</p>
+		</>
 	);
 };
 

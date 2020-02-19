@@ -10,7 +10,7 @@ export const TRUE_RESULT = 'TRUE_RESULT';
 export const FALSE_RESULT = 'FALSE_RESULT';
 export const RESET_RESULT = 'RESET_RESULT';
 
-export const checkData = () => dispatch => {
+export const checkData = user_address => dispatch => {
 	// tell reducer data is being fetched currently
 	dispatch({ type: FETCH_DATA });
 
@@ -29,14 +29,12 @@ export const checkData = () => dispatch => {
 	// get data from google geocoder, tell reducer
 	axios
 		.get(
-			'https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyDI7Ly1kdSWoFzKxHpKrH3QdRM9_NCVOks'
+			`https://maps.googleapis.com/maps/api/geocode/json?address=${user_address}&key=AIzaSyDI7Ly1kdSWoFzKxHpKrH3QdRM9_NCVOks`
 		)
 		.then(res => {
 			if (res.data.status === 'ZERO_RESULTS') {
-				console.log('zero results from google', res.data.status);
 				dispatch({ type: SET_GOOGLE_ERROR });
 			} else {
-				console.log('correct results', res.data.results[0].geometry.location);
 				dispatch({
 					type: UPDATE_ADDRESS,
 					payload: res.data.results[0].geometry.location
