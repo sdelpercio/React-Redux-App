@@ -43,7 +43,7 @@ const Result = props => {
 
 	return (
 		<>
-			{props.searched === true && (
+			{props.searched && (
 				<div>
 					{props.result ? (
 						<p>
