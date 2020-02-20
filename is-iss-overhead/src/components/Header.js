@@ -1,10 +1,13 @@
 import React from 'react';
+import './Header.css';
 
 const Header = () => {
 	return (
-		<div>
-			<h1>Is the International Space Station over your head?</h1>
-		</div>
+		<>
+			<h1 className='Header'>
+				Is the International Space Station over your head?
+			</h1>
+		</>
 	);
 };
 export default Header;

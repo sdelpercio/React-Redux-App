@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { checkData, resetResult } from '../actions';
+import './AddressForm.css';
 
 const AddressForm = props => {
 	const [addressInput, setAddressInput] = useState('');
@@ -28,21 +29,26 @@ const AddressForm = props => {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor='address' />
+			<form className='Form' onSubmit={handleSubmit}>
 				<input
+					className='Address'
 					type='text'
 					name='address'
 					id='address'
 					value={addressInput}
 					placeholder='enter your address'
+					autoComplete='off'
 					onChange={handleChange}
 					required
 				/>
-				<button type='submit'>Go!</button>
-				<button onClick={handleReset}>Reset</button>
+				<button className='Submit' type='submit'>
+					Go!
+				</button>
+				<button className='Reset' onClick={handleReset}>
+					Reset
+				</button>
 			</form>
-			<p>
+			<p className='Sample'>
 				Sample Address:{' '}
 				<span>1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA</span>
 			</p>
