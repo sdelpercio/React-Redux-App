@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { trueResult, falseResult, resetResult } from '../actions';
+import { trueResult, falseResult } from '../actions';
 
 const Result = props => {
+	console.log(props);
 	// recalculate result
-	useEffect(
-		props => {
+	useEffect(() => {
+		if (!props.iss_latlong || !props.user_latlong) {
+			return;
+		} else {
 			const lat1 = props.user_latlong.lat;
 			const lng1 = props.user_latlong.lng;
 			const lat2 = props.iss_latlong.latitude;
@@ -38,10 +41,11 @@ const Result = props => {
 					props.falseResult();
 				}
 			};
+
+			console.log('google error here', props.google_error);
 			isIssOverhead();
-		},
-		[props.isFetching]
-	);
+		}
+	});
 
 	return (
 		<>
@@ -53,7 +57,11 @@ const Result = props => {
 							<span>🛰</span>
 						</p>
 					) : (
-						<p>The ISS is not within 100 km of you</p>
+						<p>
+							The ISS is not within 100 km of you. It is currently at Latitude:{' '}
+							{props.iss_latlong.latitude}, Longitude:{' '}
+							{props.iss_latlong.longitude}
+						</p>
 					)}
 				</div>
 			)}

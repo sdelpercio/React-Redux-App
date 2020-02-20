@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { checkData } from '../actions';
+import { checkData, resetResult } from '../actions';
 
 const AddressForm = props => {
 	const [addressInput, setAddressInput] = useState('');
@@ -23,6 +23,11 @@ const AddressForm = props => {
 		setAdjustedAddress('');
 	};
 
+	const handleReset = e => {
+		e.preventDefault();
+		props.resetResult();
+	};
+
 	return (
 		<>
 			<form onSubmit={handleSubmit}>
@@ -37,6 +42,7 @@ const AddressForm = props => {
 					required
 				/>
 				<button type='submit'>Go!</button>
+				<button onClick={handleReset}>Reset</button>
 			</form>
 			<p>
 				Sample Address:{' '}
@@ -46,4 +52,4 @@ const AddressForm = props => {
 	);
 };
 
-export default connect(null, { checkData })(AddressForm);
+export default connect(null, { checkData, resetResult })(AddressForm);
