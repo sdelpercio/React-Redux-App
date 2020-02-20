@@ -4,7 +4,6 @@ import { checkData, resetResult } from '../actions';
 
 const AddressForm = props => {
 	const [addressInput, setAddressInput] = useState('');
-	const [adjustedAddress, setAdjustedAddress] = useState('');
 
 	function removeSpaces(string) {
 		return string.replace(/ /g, '+');
@@ -16,11 +15,10 @@ const AddressForm = props => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		setAdjustedAddress(removeSpaces(addressInput));
+		const adjustedAddress = removeSpaces(addressInput);
 		props.checkData(adjustedAddress);
 
 		setAddressInput('');
-		setAdjustedAddress('');
 	};
 
 	const handleReset = e => {

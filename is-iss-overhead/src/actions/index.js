@@ -13,35 +13,27 @@ export const RESET_RESULT = 'RESET_RESULT';
 export const checkData = user_address => dispatch => {
 	// tell reducer data is being fetched currently
 	dispatch({ type: FETCH_DATA });
-
 	// get data from iss, tell reducer
 	axios
 		.get('http://api.open-notify.org/iss-now.json')
 		.then(res => {
-			if (res.data.message !== 'success') {
-				dispatch({ type: SET_ISS_ERROR });
-			} else {
-				dispatch({ type: UPDATE_ISS, payload: res.data.iss_position });
-			}
+			dispatch({ type: UPDATE_ISS, payload: res.data.iss_position });
 		})
-		.catch(err => console.log('error from iss', err));
+		.catch(err => dispatch({ type: SET_ISS_ERROR }));
 
 	// get data from google geocoder, tell reducer
 	axios
 		.get(
-			`https://maps.googleapis.com/maps/api/geocode/json?address=${user_address}&key=AIzaSyDI7Ly1kdSWoFzKxHpKrH3QdRM9_NCVOks`
+			`https://maps.googleapis.com/maps/api/geocode/json?address=${user_address}&key=AIzaSyBGXC2Gk3tmos1zwfgXT0G8eWGgerXjnGA`
 		)
 		.then(res => {
-			if (res.data.status === 'ZERO_RESULTS') {
-				dispatch({ type: SET_GOOGLE_ERROR });
-			} else {
-				dispatch({
-					type: UPDATE_ADDRESS,
-					payload: res.data.results[0].geometry.location
-				});
-			}
+			console.log('googles response', res);
+			dispatch({
+				type: UPDATE_ADDRESS,
+				payload: res.data.results[0].geometry.location
+			});
 		})
-		.catch(err => console.log('error from google', err));
+		.catch(err => dispatch({ type: SET_GOOGLE_ERROR }));
 };
 
 export const trueResult = () => {

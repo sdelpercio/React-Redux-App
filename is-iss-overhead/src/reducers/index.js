@@ -14,10 +14,10 @@ export const initialState = {
 	searched: false,
 
 	user_latlong: {},
-	google_error: '',
+	google_error: false,
 
 	iss_latlong: {},
-	iss_error: '',
+	iss_error: false,
 
 	result: false
 };
@@ -30,9 +30,9 @@ export const reducer = (state = initialState, action) => {
 				isFetching: true,
 				searched: true,
 				user_latlong: {},
-				google_error: '',
+				google_error: false,
 				iss_latlong: {},
-				iss_error: '',
+				iss_error: false,
 				result: false
 			};
 		case UPDATE_ISS:
@@ -44,8 +44,9 @@ export const reducer = (state = initialState, action) => {
 		case SET_ISS_ERROR:
 			return {
 				...state,
-				iss_error: "Sorry, couldn't find the ISS's position",
-				isFetching: false
+				iss_error: true,
+				isFetching: false,
+				searched: false
 			};
 		case UPDATE_ADDRESS:
 			return {
@@ -56,7 +57,9 @@ export const reducer = (state = initialState, action) => {
 		case SET_GOOGLE_ERROR:
 			return {
 				...state,
-				google_error: "Sorry, we couldn't find your address. Try another!"
+				google_error: true,
+				isFetching: false,
+				searched: false
 			};
 		case TRUE_RESULT:
 			return {
@@ -74,9 +77,9 @@ export const reducer = (state = initialState, action) => {
 				isFetching: false,
 				searched: false,
 				user_latlong: {},
-				google_error: '',
+				google_error: false,
 				iss_latlong: {},
-				iss_error: '',
+				iss_error: false,
 				result: false
 			};
 		default:
