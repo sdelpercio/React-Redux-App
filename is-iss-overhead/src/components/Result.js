@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { trueResult, falseResult } from '../actions';
+import './Result.css';
 
 const Result = props => {
 	// recalculate result
@@ -46,12 +47,12 @@ const Result = props => {
 			{props.searched && (
 				<div>
 					{props.result ? (
-						<p>
+						<p className='Result'>
 							<span>🔭</span>The ISS is within 100 km of you overhead!
 							<span>🛰</span>
 						</p>
 					) : (
-						<p>
+						<p className='Result'>
 							The ISS is not within 100 km of you. It is currently at Latitude:{' '}
 							{props.iss_latlong.latitude}, Longitude:{' '}
 							{props.iss_latlong.longitude}
@@ -60,9 +61,11 @@ const Result = props => {
 				</div>
 			)}
 			{props.google_error === true && (
-				<p>Sorry, that address couldn't be found</p>
+				<p className='Result'>Sorry, that address couldn't be found</p>
 			)}
-			{props.iss_error === true && <p>Sorry, the ISS couldn't be found</p>}
+			{props.iss_error === true && (
+				<p className='Result'>Sorry, the ISS couldn't be found</p>
+			)}
 		</>
 	);
 };
