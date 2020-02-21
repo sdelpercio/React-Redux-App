@@ -15,7 +15,7 @@ export const checkData = user_address => dispatch => {
 	dispatch({ type: FETCH_DATA });
 	// get data from iss, tell reducer
 	axios
-		.get('http://api.open-notify.org/iss-now.json')
+		.get('https://api.open-notify.org/iss-now.json')
 		.then(res => {
 			dispatch({ type: UPDATE_ISS, payload: res.data.iss_position });
 		})
