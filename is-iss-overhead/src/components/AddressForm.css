@@ -1,0 +1,56 @@
+.Form {
+	width: 30%;
+	margin: 0 auto;
+}
+.Address {
+	width: 100%;
+	text-align: center;
+	border: 0;
+	border-bottom: 2px solid white;
+	outline: 0;
+	font-size: 1.6rem;
+	color: white;
+	padding: 7px 0;
+	margin-bottom: 1rem;
+	background: transparent;
+	transition: border-color 0.2s;
+}
+.Address::placeholder {
+	color: grey;
+	background-color: transparent;
+}
+.Submit {
+	width: 8rem;
+	padding: 0.8rem 1.6rem;
+	font-size: 1.8rem;
+	font-weight: bold;
+	text-align: center;
+	background: transparent;
+	border: 1px solid white;
+	color: white;
+	transition: background-color 0.5s ease-in;
+}
+.Submit:hover {
+	cursor: pointer;
+	background-color: white;
+	color: black;
+}
+.Reset {
+	width: 8rem;
+	padding: 0.8rem 1.6rem;
+	font-size: 1.8rem;
+	font-weight: bold;
+	text-align: center;
+	background: transparent;
+	border: 1px solid white;
+	color: white;
+	transition: background-color 0.5s ease-in;
+}
+.Reset:hover {
+	cursor: pointer;
+	background-color: white;
+	color: black;
+}
+.Sample {
+	font-size: 1.2rem;
+}
